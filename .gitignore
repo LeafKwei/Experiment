@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# QT TMP
+*.TMP
+
 # Compiled Object files
 *.slo
 *.lo

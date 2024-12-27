@@ -2,7 +2,7 @@ TEMPLATE = app
 DESTDIR=../bin
 
 QT       += core gui
-LIBS += -L $$PWD/../lib -lspine-cpp
+LIBS += -L $$PWD/../lib -lspine-cpp -lqspine
 
 win32{
 	QMAKE_POST_LINK += -mkdir \"../bin/res\" && xcopy \"$$PWD/res\" \"../bin/res\" /s/y
@@ -14,8 +14,11 @@ linux{
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
-
+CONFIG += c++03
+INCLUDEPATH += \
+	../spine-cpp/include \
+	../spine-user/include
+	
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -25,7 +28,9 @@ SOURCES += \
     widget.cpp
 
 HEADERS += \
-    widget.h
+    widget.h \
+    ../spine-cpp/include/spine/*.h \
+    ../spine-user/include/*.h
 
 FORMS += \
     widget.ui
