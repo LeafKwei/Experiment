@@ -29,6 +29,10 @@
 *.a
 *.lib
 
+# Dynamic libraries
+*.dll
+*.so
+
 # Executables
 *.exe
 *.out

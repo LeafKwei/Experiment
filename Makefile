@@ -36,8 +36,7 @@ SED           = $(QMAKE) -install sed
 MOVE          = move
 SUBTARGETS    =  \
 		sub-spine-cpp \
-		sub-spine-sample \
-		sub-spine-user
+		sub-spine-sample
 
 
 sub-spine-cpp-qmake_all:  FORCE
@@ -90,31 +89,6 @@ sub-spine-sample-install_subtargets: FORCE
 sub-spine-sample-uninstall_subtargets: FORCE
 	@if not exist spine-sample\ mkdir spine-sample\ & if not exist spine-sample\ exit 1
 	cd spine-sample\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-sample\spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
-sub-spine-user-qmake_all:  FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
-	cd spine-user\ && $(MAKE) -f Makefile qmake_all
-sub-spine-user: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile
-sub-spine-user-make_first: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile 
-sub-spine-user-all: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile all
-sub-spine-user-clean: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile clean
-sub-spine-user-distclean: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile distclean
-sub-spine-user-install_subtargets: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile install
-sub-spine-user-uninstall_subtargets: FORCE
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
 
 Makefile: QSpine.pro ../../../../K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/win32-g++/qmake.conf ../../../../K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/spec_pre.prf \
 		../../../../K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/device_config.prf \
@@ -506,16 +480,16 @@ QSpine.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile QSpine.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
-qmake_all: sub-spine-cpp-qmake_all sub-spine-sample-qmake_all sub-spine-user-qmake_all FORCE
+qmake_all: sub-spine-cpp-qmake_all sub-spine-sample-qmake_all FORCE
 
-make_first: sub-spine-cpp-make_first sub-spine-sample-make_first sub-spine-user-make_first  FORCE
-all: sub-spine-cpp-all sub-spine-sample-all sub-spine-user-all  FORCE
-clean: sub-spine-cpp-clean sub-spine-sample-clean sub-spine-user-clean  FORCE
-distclean: sub-spine-cpp-distclean sub-spine-sample-distclean sub-spine-user-distclean  FORCE
+make_first: sub-spine-cpp-make_first sub-spine-sample-make_first  FORCE
+all: sub-spine-cpp-all sub-spine-sample-all  FORCE
+clean: sub-spine-cpp-clean sub-spine-sample-clean  FORCE
+distclean: sub-spine-cpp-distclean sub-spine-sample-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-spine-cpp-install_subtargets sub-spine-sample-install_subtargets sub-spine-user-install_subtargets FORCE
-uninstall_subtargets: sub-spine-cpp-uninstall_subtargets sub-spine-sample-uninstall_subtargets sub-spine-user-uninstall_subtargets FORCE
+install_subtargets: sub-spine-cpp-install_subtargets sub-spine-sample-install_subtargets FORCE
+uninstall_subtargets: sub-spine-cpp-uninstall_subtargets sub-spine-sample-uninstall_subtargets FORCE
 
 sub-spine-cpp-debug:
 	@if not exist spine-cpp\ mkdir spine-cpp\ & if not exist spine-cpp\ exit 1
@@ -523,10 +497,7 @@ sub-spine-cpp-debug:
 sub-spine-sample-debug:
 	@if not exist spine-sample\ mkdir spine-sample\ & if not exist spine-sample\ exit 1
 	cd spine-sample\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-sample\spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
-sub-spine-user-debug:
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
-debug: sub-spine-cpp-debug sub-spine-sample-debug sub-spine-user-debug
+debug: sub-spine-cpp-debug sub-spine-sample-debug
 
 sub-spine-cpp-release:
 	@if not exist spine-cpp\ mkdir spine-cpp\ & if not exist spine-cpp\ exit 1
@@ -534,10 +505,7 @@ sub-spine-cpp-release:
 sub-spine-sample-release:
 	@if not exist spine-sample\ mkdir spine-sample\ & if not exist spine-sample\ exit 1
 	cd spine-sample\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-sample\spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
-sub-spine-user-release:
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
-release: sub-spine-cpp-release sub-spine-sample-release sub-spine-user-release
+release: sub-spine-cpp-release sub-spine-sample-release
 
 sub-spine-cpp-check:
 	@if not exist spine-cpp\ mkdir spine-cpp\ & if not exist spine-cpp\ exit 1
@@ -545,10 +513,7 @@ sub-spine-cpp-check:
 sub-spine-sample-check:
 	@if not exist spine-sample\ mkdir spine-sample\ & if not exist spine-sample\ exit 1
 	cd spine-sample\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-sample\spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
-sub-spine-user-check:
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
-check: sub-spine-cpp-check sub-spine-sample-check sub-spine-user-check
+check: sub-spine-cpp-check sub-spine-sample-check
 
 sub-spine-cpp-benchmark:
 	@if not exist spine-cpp\ mkdir spine-cpp\ & if not exist spine-cpp\ exit 1
@@ -556,10 +521,7 @@ sub-spine-cpp-benchmark:
 sub-spine-sample-benchmark:
 	@if not exist spine-sample\ mkdir spine-sample\ & if not exist spine-sample\ exit 1
 	cd spine-sample\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-sample\spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
-sub-spine-user-benchmark:
-	@if not exist spine-user\ mkdir spine-user\ & if not exist spine-user\ exit 1
-	cd spine-user\ && ( if not exist Makefile $(QMAKE) -o Makefile D:\K_File\K_Project\qt\QSpine\spine-user\spine-user.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-spine-cpp-benchmark sub-spine-sample-benchmark sub-spine-user-benchmark
+benchmark: sub-spine-cpp-benchmark sub-spine-sample-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE

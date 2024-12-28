@@ -1,7 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "spine/spine.h"
-#include "qspine.h"
+#include "qspine/qspine.h"
 
 using namespace spine;
 
@@ -11,7 +11,8 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
     
-    Atlas *atlas = new Atlas("./res/changmen/changmen.atlas", new QSpineTextureLoader());
+    TextureLoader *loader = new QSpineTextureLoader();
+    Atlas *atlas = new Atlas("./res/changmen/changmen.atlas", loader);
 }
 
 Widget::~Widget()

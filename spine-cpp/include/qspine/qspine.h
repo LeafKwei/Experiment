@@ -8,8 +8,7 @@ class QSpineTextureLoader : public spine::TextureLoader{
     public:
         QSpineTextureLoader();
         virtual void load(spine::AtlasPage &page, const spine::String &path) override;
-		virtual void unload(void *texture) override;
-		~QSpineTextureLoader() override;
+        virtual void unload(void *texture) override;
+        ~QSpineTextureLoader() override;
 };
-
 #endif

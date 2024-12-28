@@ -1,13 +1,14 @@
 TEMPLATE = lib
 TARGET=spine-cpp
 CONFIG += staticlib
-CONFIG += c++03
+#CONFIG += c++03
 DESTDIR = ../lib
 
 INCLUDEPATH += \
     $$PWD/include
     
 HEADERS+= \
+	include/qspine/qspine.h \
 	include/spine/Animation.h \
 	include/spine/AnimationState.h \
 	include/spine/AnimationStateData.h \
@@ -168,4 +169,6 @@ SOURCES += \
 	src/spine/TranslateTimeline.cpp \
 	src/spine/Triangulator.cpp \
 	src/spine/Updatable.cpp \
-	src/spine/VertexAttachment.cpp
+	src/spine/VertexAttachment.cpp \
+	src/qspine/QSpineExtension.cpp \
+	src/qspine/QSpineTextureLoader.cpp

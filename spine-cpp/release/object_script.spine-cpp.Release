@@ -65,3 +65,5 @@ release/TranslateTimeline.o
 release/Triangulator.o
 release/Updatable.o
 release/VertexAttachment.o
+release/QSpineExtension.o
+release/QSpineTextureLoader.o

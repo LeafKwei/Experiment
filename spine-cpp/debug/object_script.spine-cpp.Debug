@@ -65,3 +65,5 @@ debug/TranslateTimeline.o
 debug/Triangulator.o
 debug/Updatable.o
 debug/VertexAttachment.o
+debug/QSpineExtension.o
+debug/QSpineTextureLoader.o
