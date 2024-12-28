@@ -4,6 +4,9 @@
 #include "spine/spine.h"
 #include "spine/TextureLoader.h"
 
+typedef int Vertex;
+
+namespace qspine {
 class QSpineTextureLoader : public spine::TextureLoader{
     public:
         QSpineTextureLoader();
@@ -11,4 +14,17 @@ class QSpineTextureLoader : public spine::TextureLoader{
         virtual void unload(void *texture) override;
         ~QSpineTextureLoader() override;
 };
+
+class QSpineSkeletonRender{
+    public:
+        QSpineSkeletonRender();
+        void drawSkeleton(spine::Skeleton &skeleton);
+        ~QSpineSkeletonRender();
+        
+    private:
+        spine::Vector<Vertex> vertices;
+        spine::SkeletonRenderer renderer; 
+};
+
+}
 #endif

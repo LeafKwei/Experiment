@@ -103,6 +103,7 @@ HEADERS+= \
 	
 
 SOURCES += \
+	src/qspine/QSpineRender.cpp \
 	src/spine/Animation.cpp \
 	src/spine/AnimationState.cpp \
 	src/spine/AnimationStateData.cpp \

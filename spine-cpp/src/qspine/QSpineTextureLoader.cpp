@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace spine;
+using namespace qspine;
 
 QSpineTextureLoader::QSpineTextureLoader(){
     std::cout << "construct3" << std::endl;
