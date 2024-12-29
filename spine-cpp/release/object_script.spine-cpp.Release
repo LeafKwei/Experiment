@@ -1,3 +1,4 @@
+release/QSpineRender.o
 release/Animation.o
 release/AnimationState.o
 release/AnimationStateData.o

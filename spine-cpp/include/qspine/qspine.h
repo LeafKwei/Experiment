@@ -1,6 +1,7 @@
 #ifndef QSPINE_H
 #define QSPINE_H
 
+#include <QtQuick/QQuickWindow>
 #include "spine/spine.h"
 #include "spine/TextureLoader.h"
 
@@ -13,6 +14,9 @@ class QSpineTextureLoader : public spine::TextureLoader{
         virtual void load(spine::AtlasPage &page, const spine::String &path) override;
         virtual void unload(void *texture) override;
         ~QSpineTextureLoader() override;
+        
+    private:
+        QQuickWindow *quickWindow;
 };
 
 class QSpineSkeletonRender{

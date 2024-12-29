@@ -12,6 +12,6 @@ QSpineTextureLoader::~QSpineTextureLoader(){
 
 }
 
-QSpineSkeletonRender::drawSkeleton(Skeleton &skeleton){
+void QSpineSkeletonRender::drawSkeleton(Skeleton &skeleton){
 
 }

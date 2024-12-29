@@ -1,7 +1,7 @@
 TEMPLATE = app
 DESTDIR=../bin
 
-QT       += core gui
+QT       += core gui quick
 LIBS += -L $$PWD/../lib  -lspine-cpp
 
 win32{
@@ -23,8 +23,7 @@ INCLUDEPATH += \
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    widget.cpp
+    main.cpp
 
 HEADERS += \
     ../spine-cpp/include/qspine/qspine.h \
@@ -118,13 +117,14 @@ HEADERS += \
     ../spine-cpp/include/spine/VertexAttachment.h \
     ../spine-cpp/include/spine/Vertices.h \
     ../spine-cpp/include/spine/dll.h \
-    ../spine-cpp/include/spine/spine.h \
-    widget.h
+    ../spine-cpp/include/spine/spine.h
 
-FORMS += \
-    widget.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+	windowframe.qrc

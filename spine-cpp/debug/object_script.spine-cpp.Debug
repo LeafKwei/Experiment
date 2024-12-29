@@ -1,3 +1,4 @@
+debug/QSpineRender.o
 debug/Animation.o
 debug/AnimationState.o
 debug/AnimationStateData.o

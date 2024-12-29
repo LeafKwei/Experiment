@@ -270,11 +270,19 @@ Makefile: spine-sample.pro D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/yacc.prf \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/lex.prf \
 		spine-sample.pro \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Quick.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6OpenGL.prl \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Widgets.prl \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Gui.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlMeta.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlModels.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlWorkerScript.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Qml.prl \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Network.prl \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Core.prl \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6EntryPoint.prl \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/build_pass.prf
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/build_pass.prf \
+		windowframe.qrc
 	$(QMAKE) -o Makefile spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/spec_pre.prf:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/device_config.prf:
@@ -476,11 +484,19 @@ D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/exceptions
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/yacc.prf:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/lex.prf:
 spine-sample.pro:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Quick.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6OpenGL.prl:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Widgets.prl:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Gui.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlMeta.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlModels.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6QmlWorkerScript.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Qml.prl:
+D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Network.prl:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6Core.prl:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/Qt6EntryPoint.prl:
 D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/build_pass.prf:
+windowframe.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile spine-sample.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

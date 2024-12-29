@@ -5,15 +5,16 @@ using namespace spine;
 using namespace qspine;
 
 QSpineTextureLoader::QSpineTextureLoader(){
-    std::cout << "construct3" << std::endl;
+    this -> quickWindow = new QQuickWindow();
+    this -> quickWindow->show();
 }
 
 QSpineTextureLoader::~QSpineTextureLoader(){
-    std::cout << "deconstruct" << std::endl;
+    
 }
 
 void QSpineTextureLoader::load(AtlasPage &page, const String &path){
-
+    
 }
 
 void QSpineTextureLoader::unload(void *texture){

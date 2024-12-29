@@ -1,11 +1,25 @@
-#include "widget.h"
-#include <QApplication>
-#include <QFile>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    Widget w;
-    w.show();
-    return a.exec();
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    
+    const QUrl main_url("qrc:/qml/windowframe.qml");
+    QObject::connect(
+        &engine, 
+        QQmlApplicationEngine::objectCreated, 
+        &app, 
+        [main_url] (QObject *object, const QUrl &url) -> void{
+            if(main_url == url && object == nullptr){  //When failed to load engine, terminate program with a error code
+                exit(-1);
+            }
+        },
+        Qt::ConnectionType::QueuedConnection
+    );
+    
+    engine.load(main_url);   //Load url and detect result by above
+    return app.exec();
 }
