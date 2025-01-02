@@ -1,5 +1,6 @@
 TEMPLATE = lib
 TARGET=spine-cpp
+QT += qml quick 
 CONFIG += staticlib
 #CONFIG += c++03
 DESTDIR = ../lib

@@ -10,12 +10,14 @@ int main(int argc, char *argv[])
     const QUrl main_url("qrc:/qml/windowframe.qml");
     QObject::connect(
         &engine, 
-        QQmlApplicationEngine::objectCreated, 
+        &QQmlApplicationEngine::objectCreated, 
         &app, 
         [main_url] (QObject *object, const QUrl &url) -> void{
-            if(main_url == url && object == nullptr){  //When failed to load engine, terminate program with a error code
+            if(main_url == url && object == nullptr){  //When failed to load engine, terminate program with an error code
                 exit(-1);
             }
+            
+            qInfo() << "We have created qmlengine";
         },
         Qt::ConnectionType::QueuedConnection
     );

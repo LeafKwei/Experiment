@@ -1,7 +1,7 @@
 TEMPLATE = app
 DESTDIR=../bin
 
-QT       += core gui quick
+QT       += quick
 LIBS += -L $$PWD/../lib  -lspine-cpp
 
 win32{
