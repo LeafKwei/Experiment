@@ -23,9 +23,9 @@ void QSpineTextureLoader::load(AtlasPage &page, const String &path){
         return;
     }
     
-    if(quickWindow){
+    if(m_window){
         QImage image(qpath);
-        QSGTexture *gltexure = quickWindow -> createTextureFromImage(image);
+        QSGTexture *gltexure = m_window -> createTextureFromImage(image);
         gltexure -> setFiltering(QSGTexture::Linear);
         gltexure -> setMipmapFiltering(QSGTexture::Linear);
         page.texture = gltexure;
@@ -37,4 +37,12 @@ void QSpineTextureLoader::load(AtlasPage &page, const String &path){
 
 void QSpineTextureLoader::unload(void *texture){
     delete texture;
+}
+
+QSpineTextureLoader* QSpineTextureLoader::instance(){
+    if(m_loaderinstance){
+        return m_loaderinstance;
+    }
+    
+    m_loaderinstance = new QSpineTextureLoader;
 }
