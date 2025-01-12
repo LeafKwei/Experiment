@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# QT TMP
+*.TMP
+
 # Compiled Object files
 *.slo
 *.lo
@@ -25,6 +28,10 @@
 *.la
 *.a
 *.lib
+
+# Dynamic libraries
+*.dll
+*.so
 
 # Executables
 *.exe

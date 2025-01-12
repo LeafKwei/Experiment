@@ -1,3 +1,5 @@
+release/QSpineRender.o
+release/QSpineSprite.o
 release/Animation.o
 release/AnimationState.o
 release/AnimationStateData.o
@@ -65,3 +67,6 @@ release/TranslateTimeline.o
 release/Triangulator.o
 release/Updatable.o
 release/VertexAttachment.o
+release/QSpineExtension.o
+release/QSpineTextureLoader.o
+release/moc_qspine.o

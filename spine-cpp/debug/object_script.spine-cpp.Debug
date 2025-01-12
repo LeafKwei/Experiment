@@ -1,3 +1,5 @@
+debug/QSpineRender.o
+debug/QSpineSprite.o
 debug/Animation.o
 debug/AnimationState.o
 debug/AnimationStateData.o
@@ -65,3 +67,6 @@ debug/TranslateTimeline.o
 debug/Triangulator.o
 debug/Updatable.o
 debug/VertexAttachment.o
+debug/QSpineExtension.o
+debug/QSpineTextureLoader.o
+debug/moc_qspine.o

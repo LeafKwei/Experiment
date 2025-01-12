@@ -13,13 +13,13 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -g -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -g -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I. -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore -Idebug -I. -I/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/win32-g++ 
+INCPATH       = -I. -I../spine-cpp/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtOpenGL -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlMeta -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlModels -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlWorkerScript -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlIntegration -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore -Idebug -I/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -L D:\K_File\K_Project\qt\QSpine\lib -lspine-cpp D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Widgets.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Gui.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Core.a -lmingw32 D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        -L D:\K_File\K_Project\qt\QSpine\lib -lspine-cpp D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Quick.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6OpenGL.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Widgets.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Gui.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6QmlMeta.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6QmlModels.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6QmlWorkerScript.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Qml.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Network.a D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6Core.a -lmingw32 D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -50,14 +50,104 @@ OBJECTS_DIR   = debug
 
 ####### Files
 
-SOURCES       = main.cpp \
-		widget.cpp debug\moc_widget.cpp
+SOURCES       = main.cpp debug\qrc_windowframe.cpp \
+		debug\moc_qspine.cpp
 OBJECTS       = debug/main.o \
-		debug/widget.o \
-		debug/moc_widget.o
+		debug/qrc_windowframe.o \
+		debug/moc_qspine.o
 
-DIST          =  widget.h main.cpp \
-		widget.cpp
+DIST          =  ..\spine-cpp\include\qspine\qspine.h \
+		..\spine-cpp\include\spine\Animation.h \
+		..\spine-cpp\include\spine\AnimationState.h \
+		..\spine-cpp\include\spine\AnimationStateData.h \
+		..\spine-cpp\include\spine\Atlas.h \
+		..\spine-cpp\include\spine\AtlasAttachmentLoader.h \
+		..\spine-cpp\include\spine\Attachment.h \
+		..\spine-cpp\include\spine\AttachmentLoader.h \
+		..\spine-cpp\include\spine\AttachmentTimeline.h \
+		..\spine-cpp\include\spine\AttachmentType.h \
+		..\spine-cpp\include\spine\BlendMode.h \
+		..\spine-cpp\include\spine\BlockAllocator.h \
+		..\spine-cpp\include\spine\Bone.h \
+		..\spine-cpp\include\spine\BoneData.h \
+		..\spine-cpp\include\spine\BoundingBoxAttachment.h \
+		..\spine-cpp\include\spine\ClippingAttachment.h \
+		..\spine-cpp\include\spine\Color.h \
+		..\spine-cpp\include\spine\ColorTimeline.h \
+		..\spine-cpp\include\spine\ConstraintData.h \
+		..\spine-cpp\include\spine\ContainerUtil.h \
+		..\spine-cpp\include\spine\CurveTimeline.h \
+		..\spine-cpp\include\spine\Debug.h \
+		..\spine-cpp\include\spine\DeformTimeline.h \
+		..\spine-cpp\include\spine\DrawOrderTimeline.h \
+		..\spine-cpp\include\spine\Event.h \
+		..\spine-cpp\include\spine\EventData.h \
+		..\spine-cpp\include\spine\EventTimeline.h \
+		..\spine-cpp\include\spine\Extension.h \
+		..\spine-cpp\include\spine\HasRendererObject.h \
+		..\spine-cpp\include\spine\HashMap.h \
+		..\spine-cpp\include\spine\IkConstraint.h \
+		..\spine-cpp\include\spine\IkConstraintData.h \
+		..\spine-cpp\include\spine\IkConstraintTimeline.h \
+		..\spine-cpp\include\spine\Inherit.h \
+		..\spine-cpp\include\spine\InheritTimeline.h \
+		..\spine-cpp\include\spine\Json.h \
+		..\spine-cpp\include\spine\LinkedMesh.h \
+		..\spine-cpp\include\spine\Log.h \
+		..\spine-cpp\include\spine\MathUtil.h \
+		..\spine-cpp\include\spine\MeshAttachment.h \
+		..\spine-cpp\include\spine\MixBlend.h \
+		..\spine-cpp\include\spine\MixDirection.h \
+		..\spine-cpp\include\spine\PathAttachment.h \
+		..\spine-cpp\include\spine\PathConstraint.h \
+		..\spine-cpp\include\spine\PathConstraintData.h \
+		..\spine-cpp\include\spine\PathConstraintMixTimeline.h \
+		..\spine-cpp\include\spine\PathConstraintPositionTimeline.h \
+		..\spine-cpp\include\spine\PathConstraintSpacingTimeline.h \
+		..\spine-cpp\include\spine\Physics.h \
+		..\spine-cpp\include\spine\PhysicsConstraint.h \
+		..\spine-cpp\include\spine\PhysicsConstraintData.h \
+		..\spine-cpp\include\spine\PhysicsConstraintTimeline.h \
+		..\spine-cpp\include\spine\PointAttachment.h \
+		..\spine-cpp\include\spine\Pool.h \
+		..\spine-cpp\include\spine\PositionMode.h \
+		..\spine-cpp\include\spine\Property.h \
+		..\spine-cpp\include\spine\RTTI.h \
+		..\spine-cpp\include\spine\RegionAttachment.h \
+		..\spine-cpp\include\spine\RotateMode.h \
+		..\spine-cpp\include\spine\RotateTimeline.h \
+		..\spine-cpp\include\spine\ScaleTimeline.h \
+		..\spine-cpp\include\spine\Sequence.h \
+		..\spine-cpp\include\spine\SequenceTimeline.h \
+		..\spine-cpp\include\spine\ShearTimeline.h \
+		..\spine-cpp\include\spine\Skeleton.h \
+		..\spine-cpp\include\spine\SkeletonBinary.h \
+		..\spine-cpp\include\spine\SkeletonBounds.h \
+		..\spine-cpp\include\spine\SkeletonClipping.h \
+		..\spine-cpp\include\spine\SkeletonData.h \
+		..\spine-cpp\include\spine\SkeletonJson.h \
+		..\spine-cpp\include\spine\SkeletonRenderer.h \
+		..\spine-cpp\include\spine\Skin.h \
+		..\spine-cpp\include\spine\Slot.h \
+		..\spine-cpp\include\spine\SlotData.h \
+		..\spine-cpp\include\spine\SpacingMode.h \
+		..\spine-cpp\include\spine\SpineObject.h \
+		..\spine-cpp\include\spine\SpineString.h \
+		..\spine-cpp\include\spine\TextureLoader.h \
+		..\spine-cpp\include\spine\TextureRegion.h \
+		..\spine-cpp\include\spine\Timeline.h \
+		..\spine-cpp\include\spine\TransformConstraint.h \
+		..\spine-cpp\include\spine\TransformConstraintData.h \
+		..\spine-cpp\include\spine\TransformConstraintTimeline.h \
+		..\spine-cpp\include\spine\TranslateTimeline.h \
+		..\spine-cpp\include\spine\Triangulator.h \
+		..\spine-cpp\include\spine\Updatable.h \
+		..\spine-cpp\include\spine\Vector.h \
+		..\spine-cpp\include\spine\Version.h \
+		..\spine-cpp\include\spine\VertexAttachment.h \
+		..\spine-cpp\include\spine\Vertices.h \
+		..\spine-cpp\include\spine\dll.h \
+		..\spine-cpp\include\spine\spine.h main.cpp
 QMAKE_TARGET  = spine-sample
 DESTDIR        = ..\bin\ #avoid trailing-slash linebreak
 TARGET         = spine-sample.exe
@@ -68,7 +158,7 @@ DESTDIR_TARGET = ..\bin\spine-sample.exe
 first: all
 all: Makefile.Debug  ../bin/spine-sample.exe
 
-../bin/spine-sample.exe: D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Widgets.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Gui.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Core.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6EntryPoint.a ui_widget.h $(OBJECTS) 
+../bin/spine-sample.exe: D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Quick.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6OpenGL.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Widgets.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Gui.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6QmlMeta.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6QmlModels.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6QmlWorkerScript.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Qml.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Network.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6Core.a D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/lib/libQt6EntryPoint.a $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS) $(LIBS)
 	-mkdir "../bin/res" && xcopy "D:/K_File/K_Project/qt/QSpine/spine-sample/res" "../bin/res" /s/y
 
@@ -78,10 +168,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) spine-sample.zip $(SOURCES) $(DIST) spine-sample.pro D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\spec_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\device_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\sanitize.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\gcc-base.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\g++-base.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\windows-vulkan.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\g++-win32.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\windows-desktop.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\qconfig.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_freetype.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_libpng.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_charts.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_charts_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_concurrent.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_core.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_core_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_dbus.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designer.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designer_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_examples_asset_downloader_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_gui.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_gui_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_help.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_help_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsplatform.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsplatform_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssettings.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_linguist.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimedia.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_network.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_network_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_opengl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_png_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_printsupport.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmeta.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmeta_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltest.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick3dspatialaudio_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimagegenerator_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_spatialaudio.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_spatialaudio_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_sql.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_sql_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svg.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svg_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_testlib.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_tools_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uitools.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_widgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_xml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_xml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt_functions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\win32-g++\qmake.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\spec_post.prf ..\.qmake.stash D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exclusive_builds.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\toolchain.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\default_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\default_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resolve_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exclusive_builds_post.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\default_post.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\build_pass.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qml_debug.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\precompile_header.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\warn_on.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\permissions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resources_functions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resources.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\moc.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\opengl.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\uic.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qmake_use.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\file_copies.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\windows.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\testcase_targets.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exceptions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\yacc.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\lex.prf spine-sample.pro D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Widgets.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Gui.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Core.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6EntryPoint.prl    D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\data\dummy.cpp widget.h  main.cpp widget.cpp widget.ui    
+	$(ZIP) spine-sample.zip $(SOURCES) $(DIST) spine-sample.pro D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\spec_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\device_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\sanitize.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\gcc-base.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\g++-base.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\windows-vulkan.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\g++-win32.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\common\windows-desktop.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\qconfig.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_freetype.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_ext_libpng.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_charts.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_charts_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_concurrent.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_core.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_core_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_dbus.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designer.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designer_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_examples_asset_downloader_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_gui.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_gui_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_help.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_help_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsplatform.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsplatform_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssettings.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_linguist.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimedia.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_network.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_network_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_opengl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_png_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_printsupport.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmeta.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmeta_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltest.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick3dspatialaudio_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quick_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimage.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimage_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickvectorimagegenerator_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_spatialaudio.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_spatialaudio_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_sql.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_sql_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svg.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svg_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_testlib.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_tools_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uitools.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_widgets.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_xml.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_xml_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt_functions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\win32-g++\qmake.conf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\spec_post.prf ..\.qmake.stash D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exclusive_builds.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\toolchain.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\default_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\default_pre.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resolve_config.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exclusive_builds_post.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\default_post.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\build_pass.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qml_debug.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\precompile_header.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\warn_on.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\permissions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qt.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resources_functions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\resources.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\moc.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\opengl.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\uic.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\qmake_use.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\file_copies.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\win32\windows.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\testcase_targets.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\exceptions.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\yacc.prf D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\lex.prf spine-sample.pro windowframe.qrc D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Quick.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6OpenGL.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Widgets.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Gui.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6QmlMeta.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6QmlModels.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6QmlWorkerScript.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Qml.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Network.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6Core.prl D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\lib\Qt6EntryPoint.prl   windowframe.qrc D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\data\dummy.cpp ..\spine-cpp\include\qspine\qspine.h ..\spine-cpp\include\spine\Animation.h ..\spine-cpp\include\spine\AnimationState.h ..\spine-cpp\include\spine\AnimationStateData.h ..\spine-cpp\include\spine\Atlas.h ..\spine-cpp\include\spine\AtlasAttachmentLoader.h ..\spine-cpp\include\spine\Attachment.h ..\spine-cpp\include\spine\AttachmentLoader.h ..\spine-cpp\include\spine\AttachmentTimeline.h ..\spine-cpp\include\spine\AttachmentType.h ..\spine-cpp\include\spine\BlendMode.h ..\spine-cpp\include\spine\BlockAllocator.h ..\spine-cpp\include\spine\Bone.h ..\spine-cpp\include\spine\BoneData.h ..\spine-cpp\include\spine\BoundingBoxAttachment.h ..\spine-cpp\include\spine\ClippingAttachment.h ..\spine-cpp\include\spine\Color.h ..\spine-cpp\include\spine\ColorTimeline.h ..\spine-cpp\include\spine\ConstraintData.h ..\spine-cpp\include\spine\ContainerUtil.h ..\spine-cpp\include\spine\CurveTimeline.h ..\spine-cpp\include\spine\Debug.h ..\spine-cpp\include\spine\DeformTimeline.h ..\spine-cpp\include\spine\DrawOrderTimeline.h ..\spine-cpp\include\spine\Event.h ..\spine-cpp\include\spine\EventData.h ..\spine-cpp\include\spine\EventTimeline.h ..\spine-cpp\include\spine\Extension.h ..\spine-cpp\include\spine\HasRendererObject.h ..\spine-cpp\include\spine\HashMap.h ..\spine-cpp\include\spine\IkConstraint.h ..\spine-cpp\include\spine\IkConstraintData.h ..\spine-cpp\include\spine\IkConstraintTimeline.h ..\spine-cpp\include\spine\Inherit.h ..\spine-cpp\include\spine\InheritTimeline.h ..\spine-cpp\include\spine\Json.h ..\spine-cpp\include\spine\LinkedMesh.h ..\spine-cpp\include\spine\Log.h ..\spine-cpp\include\spine\MathUtil.h ..\spine-cpp\include\spine\MeshAttachment.h ..\spine-cpp\include\spine\MixBlend.h ..\spine-cpp\include\spine\MixDirection.h ..\spine-cpp\include\spine\PathAttachment.h ..\spine-cpp\include\spine\PathConstraint.h ..\spine-cpp\include\spine\PathConstraintData.h ..\spine-cpp\include\spine\PathConstraintMixTimeline.h ..\spine-cpp\include\spine\PathConstraintPositionTimeline.h ..\spine-cpp\include\spine\PathConstraintSpacingTimeline.h ..\spine-cpp\include\spine\Physics.h ..\spine-cpp\include\spine\PhysicsConstraint.h ..\spine-cpp\include\spine\PhysicsConstraintData.h ..\spine-cpp\include\spine\PhysicsConstraintTimeline.h ..\spine-cpp\include\spine\PointAttachment.h ..\spine-cpp\include\spine\Pool.h ..\spine-cpp\include\spine\PositionMode.h ..\spine-cpp\include\spine\Property.h ..\spine-cpp\include\spine\RTTI.h ..\spine-cpp\include\spine\RegionAttachment.h ..\spine-cpp\include\spine\RotateMode.h ..\spine-cpp\include\spine\RotateTimeline.h ..\spine-cpp\include\spine\ScaleTimeline.h ..\spine-cpp\include\spine\Sequence.h ..\spine-cpp\include\spine\SequenceTimeline.h ..\spine-cpp\include\spine\ShearTimeline.h ..\spine-cpp\include\spine\Skeleton.h ..\spine-cpp\include\spine\SkeletonBinary.h ..\spine-cpp\include\spine\SkeletonBounds.h ..\spine-cpp\include\spine\SkeletonClipping.h ..\spine-cpp\include\spine\SkeletonData.h ..\spine-cpp\include\spine\SkeletonJson.h ..\spine-cpp\include\spine\SkeletonRenderer.h ..\spine-cpp\include\spine\Skin.h ..\spine-cpp\include\spine\Slot.h ..\spine-cpp\include\spine\SlotData.h ..\spine-cpp\include\spine\SpacingMode.h ..\spine-cpp\include\spine\SpineObject.h ..\spine-cpp\include\spine\SpineString.h ..\spine-cpp\include\spine\TextureLoader.h ..\spine-cpp\include\spine\TextureRegion.h ..\spine-cpp\include\spine\Timeline.h ..\spine-cpp\include\spine\TransformConstraint.h ..\spine-cpp\include\spine\TransformConstraintData.h ..\spine-cpp\include\spine\TransformConstraintTimeline.h ..\spine-cpp\include\spine\TranslateTimeline.h ..\spine-cpp\include\spine\Triangulator.h ..\spine-cpp\include\spine\Updatable.h ..\spine-cpp\include\spine\Vector.h ..\spine-cpp\include\spine\Version.h ..\spine-cpp\include\spine\VertexAttachment.h ..\spine-cpp\include\spine\Vertices.h ..\spine-cpp\include\spine\dll.h ..\spine-cpp\include\spine\spine.h  main.cpp     
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\widget.o debug\moc_widget.o
+	-$(DEL_FILE) debug\main.o debug\qrc_windowframe.o debug\moc_qspine.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -97,22 +187,28 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
+compiler_rcc_make_all: debug/qrc_windowframe.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) debug\qrc_windowframe.cpp
+debug/qrc_windowframe.cpp: windowframe.qrc \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/bin/rcc.exe \
+		windowframe.qml
+	D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\bin\rcc.exe -name windowframe --no-zstd windowframe.qrc -o debug\qrc_windowframe.cpp
+
 compiler_moc_predefs_make_all: debug/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) debug\moc_predefs.h
 debug/moc_predefs.h: D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -g -Wall -Wextra -Wextra -dM -E -o debug\moc_predefs.h D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: debug/moc_widget.cpp
+compiler_moc_header_make_all: debug/moc_qspine.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_widget.cpp
-debug/moc_widget.cpp: widget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qwidget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiglobal.h \
+	-$(DEL_FILE) debug\moc_qspine.cpp
+debug/moc_qspine.cpp: ../spine-cpp/include/qspine/qspine.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/QQuickWindow \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qquickwindow.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qtquickglobal.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqmlglobal.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qglobal.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtversionchecks.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtconfiginclude.h \
@@ -158,34 +254,38 @@ debug/moc_widget.cpp: widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtresource.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qttranslation.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qversiontagging.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqml-config.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqmlexports.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiglobal.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtgui-config.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qtquick-config.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qtquickexports.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qsgrendererinterface.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qsgnode.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydatapointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydataops.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydata.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpair.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainertools_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qxptype_traits.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnamespace.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcompare.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcomparehelpers.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtmetamacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20functional.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20memory.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhashfunctions.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstring.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qchar.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringview.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearray.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrefcount.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydata.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpair.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydatapointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydataops.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainertools_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qxptype_traits.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20functional.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20memory.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearrayalgorithms.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearrayview.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringfwd.h \
@@ -198,41 +298,70 @@ debug/moc_widget.cpp: widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringbuilder.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter_base.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhashfunctions.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterator.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearraylist.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringlist.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qalgorithms.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringmatcher.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreevent.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopedpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qsggeometry.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QRectF \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrect.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmargins.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q23utility.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsize.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpoint.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/QMatrix4x4 \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qmatrix4x4.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvector3d.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvectornd.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmath.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvector4d.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qquaternion.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qgenericmatrix.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetatype.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdatastream.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopedpointer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevicebase.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfloat16.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmath.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterable.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetacontainer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainerinfo.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtaggedpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopeguard.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdebug.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtextstream.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontiguouscache.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmap.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qset.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhash.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindow.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QObject \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreevent.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject_impl.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbindingstorage.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmargins.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q23utility.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qaction.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qkeysequence.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QEvent \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QMargins \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QRect \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnativeinterface.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qsurface.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qsurfaceformat.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qicon.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsize.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixmap.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpaintdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrect.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpoint.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcolor.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgb.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgba64.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qimage.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixelformat.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtransform.h \
@@ -241,42 +370,21 @@ debug/moc_widget.cpp: widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qspan.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20iterator.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qline.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvariant.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdebug.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtextstream.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontiguouscache.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qset.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhash.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpalette.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbrush.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfont.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qendian.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontmetrics.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcursor.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbitmap.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qevent.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevice.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qurl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvariant.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qeventpoint.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvector2d.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvectornd.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpointingdevice.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputdevice.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QList \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QObject \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QRect \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSize \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSizeF \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/QTransform \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnativeinterface.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen_platform.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication.h \
@@ -298,37 +406,147 @@ debug/moc_widget.cpp: widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputmethod.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlocale.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication_platform.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qkeysequence.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqml.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlprivate.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsprimitivevalue.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsnumbercoercion.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsvalue.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmllist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlparserstatus.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlpropertyvaluesource.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdatetime.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcalendar.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetaobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qversionnumber.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtyperevision.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlregistration.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlIntegration/qqmlintegration.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmldebug.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlinfo.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlerror.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/QQuickFramebufferObject \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qquickframebufferobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/QQuickItem \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick/qquickitem.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlcomponent.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qproperty.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpropertyprivate.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfont.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qendian.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qaccessible.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qaccessible_base.h \
+		../spine-cpp/include/spine/spine.h \
+		../spine-cpp/include/spine/Animation.h \
+		../spine-cpp/include/spine/Vector.h \
+		../spine-cpp/include/spine/Extension.h \
+		../spine-cpp/include/spine/dll.h \
+		../spine-cpp/include/spine/SpineObject.h \
+		../spine-cpp/include/spine/SpineString.h \
+		../spine-cpp/include/spine/HashMap.h \
+		../spine-cpp/include/spine/MixBlend.h \
+		../spine-cpp/include/spine/MixDirection.h \
+		../spine-cpp/include/spine/Property.h \
+		../spine-cpp/include/spine/AnimationState.h \
+		../spine-cpp/include/spine/Pool.h \
+		../spine-cpp/include/spine/ContainerUtil.h \
+		../spine-cpp/include/spine/HasRendererObject.h \
+		../spine-cpp/include/spine/Slot.h \
+		../spine-cpp/include/spine/Color.h \
+		../spine-cpp/include/spine/MathUtil.h \
+		../spine-cpp/include/spine/AnimationStateData.h \
+		../spine-cpp/include/spine/Atlas.h \
+		../spine-cpp/include/spine/TextureRegion.h \
+		../spine-cpp/include/spine/AtlasAttachmentLoader.h \
+		../spine-cpp/include/spine/AttachmentLoader.h \
+		../spine-cpp/include/spine/RTTI.h \
+		../spine-cpp/include/spine/Attachment.h \
+		../spine-cpp/include/spine/AttachmentTimeline.h \
+		../spine-cpp/include/spine/Timeline.h \
+		../spine-cpp/include/spine/AttachmentType.h \
+		../spine-cpp/include/spine/BlendMode.h \
+		../spine-cpp/include/spine/Bone.h \
+		../spine-cpp/include/spine/Updatable.h \
+		../spine-cpp/include/spine/Physics.h \
+		../spine-cpp/include/spine/Inherit.h \
+		../spine-cpp/include/spine/BoneData.h \
+		../spine-cpp/include/spine/BoundingBoxAttachment.h \
+		../spine-cpp/include/spine/VertexAttachment.h \
+		../spine-cpp/include/spine/ClippingAttachment.h \
+		../spine-cpp/include/spine/ColorTimeline.h \
+		../spine-cpp/include/spine/CurveTimeline.h \
+		../spine-cpp/include/spine/ConstraintData.h \
+		../spine-cpp/include/spine/DeformTimeline.h \
+		../spine-cpp/include/spine/DrawOrderTimeline.h \
+		../spine-cpp/include/spine/Event.h \
+		../spine-cpp/include/spine/EventData.h \
+		../spine-cpp/include/spine/EventTimeline.h \
+		../spine-cpp/include/spine/IkConstraint.h \
+		../spine-cpp/include/spine/IkConstraintData.h \
+		../spine-cpp/include/spine/IkConstraintTimeline.h \
+		../spine-cpp/include/spine/InheritTimeline.h \
+		../spine-cpp/include/spine/Json.h \
+		../spine-cpp/include/spine/LinkedMesh.h \
+		../spine-cpp/include/spine/MeshAttachment.h \
+		../spine-cpp/include/spine/Sequence.h \
+		../spine-cpp/include/spine/PathAttachment.h \
+		../spine-cpp/include/spine/PathConstraint.h \
+		../spine-cpp/include/spine/PathConstraintData.h \
+		../spine-cpp/include/spine/PositionMode.h \
+		../spine-cpp/include/spine/SpacingMode.h \
+		../spine-cpp/include/spine/RotateMode.h \
+		../spine-cpp/include/spine/PathConstraintMixTimeline.h \
+		../spine-cpp/include/spine/PathConstraintPositionTimeline.h \
+		../spine-cpp/include/spine/PathConstraintSpacingTimeline.h \
+		../spine-cpp/include/spine/PhysicsConstraint.h \
+		../spine-cpp/include/spine/PhysicsConstraintData.h \
+		../spine-cpp/include/spine/PointAttachment.h \
+		../spine-cpp/include/spine/RegionAttachment.h \
+		../spine-cpp/include/spine/RotateTimeline.h \
+		../spine-cpp/include/spine/ScaleTimeline.h \
+		../spine-cpp/include/spine/TranslateTimeline.h \
+		../spine-cpp/include/spine/ShearTimeline.h \
+		../spine-cpp/include/spine/Skeleton.h \
+		../spine-cpp/include/spine/SkeletonBinary.h \
+		../spine-cpp/include/spine/SkeletonBounds.h \
+		../spine-cpp/include/spine/SkeletonClipping.h \
+		../spine-cpp/include/spine/Triangulator.h \
+		../spine-cpp/include/spine/SkeletonData.h \
+		../spine-cpp/include/spine/SkeletonJson.h \
+		../spine-cpp/include/spine/SkeletonRenderer.h \
+		../spine-cpp/include/spine/BlockAllocator.h \
+		../spine-cpp/include/spine/Skin.h \
+		../spine-cpp/include/spine/SlotData.h \
+		../spine-cpp/include/spine/TextureLoader.h \
+		../spine-cpp/include/spine/TransformConstraint.h \
+		../spine-cpp/include/spine/TransformConstraintData.h \
+		../spine-cpp/include/spine/TransformConstraintTimeline.h \
+		../spine-cpp/include/spine/Vertices.h \
 		debug/moc_predefs.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/bin/moc.exe
-	D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\bin\moc.exe $(DEFINES) --include D:/K_File/K_Project/qt/QSpine/spine-sample/debug/moc_predefs.h -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/win32-g++ -ID:/K_File/K_Project/qt/QSpine/spine-sample -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/x86_64-w64-mingw32/include widget.h -o debug\moc_widget.cpp
+	D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\bin\moc.exe $(DEFINES) --include D:/K_File/K_Project/qt/QSpine/spine-sample/debug/moc_predefs.h -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/mkspecs/win32-g++ -ID:/K_File/K_Project/qt/QSpine/spine-sample -ID:/K_File/K_Project/qt/QSpine/spine-cpp/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQuick -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtOpenGL -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlMeta -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlModels -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlWorkerScript -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlIntegration -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork -ID:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -ID:/K_Application/K_InstallSoftware/QT/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\spine-cpp\include\qspine\qspine.h -o debug\moc_qspine.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_widget.h
+compiler_uic_make_all:
 compiler_uic_clean:
-	-$(DEL_FILE) ui_widget.h
-ui_widget.h: widget.ui \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/bin/uic.exe
-	D:\K_Application\K_InstallSoftware\QT\6.8.0\mingw_64\bin\uic.exe widget.ui -o ui_widget.h
-
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 
 
 ####### Compile
 
-debug/main.o: main.cpp widget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qwidget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+debug/main.o: main.cpp D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/QGuiApplication \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiglobal.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qglobal.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtversionchecks.h \
@@ -377,24 +595,17 @@ debug/main.o: main.cpp widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qversiontagging.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtgui-config.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnamespace.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstring.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qchar.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcompare.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcomparehelpers.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtmetamacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstring.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qchar.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringview.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearray.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrefcount.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnamespace.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtmetamacros.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydata.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpair.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydatapointer.h \
@@ -415,91 +626,46 @@ debug/main.o: main.cpp widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringbuilder.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter_base.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhashfunctions.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterator.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearraylist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringlist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qalgorithms.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringmatcher.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreevent.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopedpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qelapsedtimer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetatype.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdatastream.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopedpointer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevicebase.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfloat16.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhashfunctions.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmath.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qalgorithms.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterable.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetacontainer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainerinfo.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtaggedpointer.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopeguard.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qeventloop.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterator.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearraylist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringlist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringmatcher.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject_impl.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbindingstorage.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmargins.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q23utility.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qaction.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qkeysequence.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qicon.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsize.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpaintdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrect.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpoint.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcolor.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgb.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgba64.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qimage.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixelformat.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtransform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpolygon.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qregion.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qspan.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20iterator.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qline.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvariant.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnativeinterface.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdebug.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtextstream.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontiguouscache.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmap.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata_impl.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qset.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhash.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpalette.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbrush.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfont.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qendian.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontmetrics.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcursor.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbitmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qevent.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qurl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qeventpoint.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvector2d.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvectornd.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpointingdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QList \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QObject \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QRect \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSize \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSizeF \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/QTransform \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnativeinterface.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen_platform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdeadlinetimer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qelapsedtimer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qeventloop.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfuture.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfutureinterface.h \
@@ -512,211 +678,57 @@ debug/main.o: main.cpp widget.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrunnable.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qexception.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpromise.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvariant.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q23utility.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputmethod.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlocale.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpoint.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsize.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmargins.h \
 		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/QApplication \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qapplication.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QFile \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfile.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfiledevice.h
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/QQmlApplicationEngine \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlapplicationengine.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlengine.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qurl.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsengine.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtimezone.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdatetime.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcalendar.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsvalue.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqmlglobal.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqml-config.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qtqmlexports.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsmanagedvalue.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsprimitivevalue.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qjsnumbercoercion.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmldebug.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqml.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlprivate.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmllist.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlparserstatus.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlpropertyvaluesource.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetaobject.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpointer.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qversionnumber.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qspan.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20iterator.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtyperevision.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlregistration.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQmlIntegration/qqmlintegration.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlerror.h \
+		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtQml/qqmlabstracturlinterceptor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
-debug/widget.o: widget.cpp widget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qwidget.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiglobal.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qglobal.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtversionchecks.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtconfiginclude.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qconfig.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtcore-config.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtconfigmacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtcoreexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcompilerdetection.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qprocessordetection.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsystemdetection.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtdeprecationmarkers.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtclasshelpermacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtpreprocessorsupport.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qassert.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtnoop.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtypes.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtversion.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtypeinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainerfwd.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsysinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlogging.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qflags.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcompare_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qatomic.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbasicatomic.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qatomic_cxx11.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qgenericatomic.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qyieldcpu.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qconstructormacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdarwinhelpers.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qexceptionhandling.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qforeach.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qttypetraits.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionpointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qglobalstatic.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmalloc.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qminmax.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnumeric.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qoverload.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qswap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtenvironmentvariables.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtresource.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qttranslation.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qversiontagging.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtgui-config.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtguiexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnamespace.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcompare.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcomparehelpers.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtmetamacros.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstring.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qchar.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringview.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearray.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrefcount.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydata.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpair.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydatapointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qarraydataops.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainertools_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qxptype_traits.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20functional.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20memory.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearrayview.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringfwd.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringliteral.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringalgorithms.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlatin1stringview.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qanystringview.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qutf8stringview.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringtokenizer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringbuilder.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringconverter_base.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhashfunctions.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterator.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbytearraylist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringlist.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qalgorithms.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qstringmatcher.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreevent.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopedpointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetatype.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdatastream.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevicebase.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfloat16.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmath.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiterable.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmetacontainer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontainerinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtaggedpointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qscopeguard.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qobject_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qbindingstorage.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmargins.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q23utility.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qaction.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qkeysequence.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qicon.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsize.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpaintdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrect.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpoint.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcolor.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgb.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qrgba64.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qimage.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpixelformat.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qtransform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpolygon.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qregion.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qspan.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/q20iterator.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qline.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvariant.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdebug.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtextstream.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcontiguouscache.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qshareddata_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qset.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qhash.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpalette.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbrush.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfont.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qendian.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontmetrics.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qfontinfo.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qcursor.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qbitmap.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qevent.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qiodevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qurl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qeventpoint.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvector2d.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qvectornd.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qpointingdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputdevice.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QList \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QObject \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QRect \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSize \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/QSizeF \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/QTransform \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qnativeinterface.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qscreen_platform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qdeadlinetimer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qelapsedtimer.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qeventloop.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfuture.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfutureinterface.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qmutex.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qtsan_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qresultstore.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qfuture_impl.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qthreadpool.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qthread.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qrunnable.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qexception.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qpromise.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qinputmethod.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtCore/qlocale.h \
-		D:/K_Application/K_InstallSoftware/QT/6.8.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		ui_widget.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\widget.o widget.cpp
+debug/qrc_windowframe.o: debug/qrc_windowframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_windowframe.o debug\qrc_windowframe.cpp
 
-debug/moc_widget.o: debug/moc_widget.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_widget.o debug\moc_widget.cpp
+debug/moc_qspine.o: debug/moc_qspine.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_qspine.o debug\moc_qspine.cpp
 
 ####### Install
 
