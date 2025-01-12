@@ -44,5 +44,5 @@ QSpineTextureLoader* QSpineTextureLoader::instance(){
         return m_loaderinstance;
     }
     
-    m_loaderinstance = new QSpineTextureLoader;
+    m_loaderinstance = new QSpineTextureLoader();
 }

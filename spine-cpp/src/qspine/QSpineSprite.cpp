@@ -3,8 +3,15 @@
 using namespace spine;
 using namespace qspine;
 
-QSpineSprite::QSpineSprite(QQuickItem *parent){
+QSpineSprite::QSpineSprite(QQuickItem *parent) : 
+    QQuickFramebufferObject(parent)
     
+{
+    
+}
+
+QSpineSprite::~QSpineSprite(){
+
 }
 
 QUrl QSpineSprite::atlasPath(){
